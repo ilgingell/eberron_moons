@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Eberron Moons</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+  
+  <head>
+    <title>Moving Shape</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body style="background-color:black;color:white">
+
+
+    <div class="container">
+      <h1>The Moons of Eberron</h1>
+      <p id="timertext">A virtual lunar chart.</p>
+      <button id="startstop" name="StartStop">Start</button>
+      <button id="faster" name="Faster">Faster</button>
+      <button id="slower" name="Slower">Slower</button>
+      <button id="reverse" name="Slower">Reverse</button>
+      <button id="reset" name="Reset">Reset</button>
+    </div>
+
+    <div id="eberron"></div>
+    <div id="ring"></div>
+    
+    <!-- divs for the orbit rings -->
+    <div id='zarantyr_orbit_css'></div>
+    <div id='olarune_orbit_css'></div>
+    <div id='therendor_orbit_css'></div>
+    <div id='eyre_orbit_css'></div>
+    <div id='dravago_orbit_css'></div>
+    <div id="nymm_orbit_css"></div>
+    <div id="lharvion_orbit_css"></div>
+    <div id="barrakas_orbit_css"></div>
+    <div id="rhaan_orbit_css"></div>
+    <div id="sypheros_orbit_css"></div>
+    <div id="aryth_orbit_css"></div>
+    <div id="vult_orbit_css"></div>
+
+    <!-- divs for the moving moons -->
+    <div id="zarantyr_css"></div>
+    <div id="olarune_css"></div>
+    <div id="therendor_css"></div>
+    <div id="eyre_css"></div>
+    <div id="dravago_css"></div>
+    <div id="nymm_css"></div>
+    <div id="lharvion_css"></div>
+    <div id="barrakas_css"></div>
+    <div id="rhaan_css"></div>
+    <div id="sypheros_css"></div>
+    <div id="aryth_css"></div>
+    <div id="vult_css"></div>
+    
+    <!-- divs for the moon phases --> 
+    
+    <div id="ascendent_phase_halo_css"></div>
+    
+    <div id="zarantyr_phase_css"></div>
+    <div id="zarantyr_phase_overlay_css"></div>
+      
+    <div id="olarune_phase_css"></div>
+    <div id="olarune_phase_overlay_css"></div>
+      
+    <div id="therendor_phase_css"></div>
+    <div id="therendor_phase_overlay_css"></div>
+      
+    <div id="eyre_phase_css"></div>
+    <div id="eyre_phase_overlay_css"></div>
+         
+    <div id="dravago_phase_css"></div>
+    <div id="dravago_phase_overlay_css"></div>
+      
+    <div id="nymm_phase_css"></div>
+    <div id="nymm_phase_overlay_css"></div>
+
+    <div id="lharvion_phase_css"></div>
+    <div id="lharvion_phase_overlay_css"></div>
+
+    <div id="barrakas_phase_css"></div>
+    <div id="barrakas_phase_overlay_css"></div>
+      
+    <div id="rhaan_phase_css"></div>
+    <div id="rhaan_phase_overlay_css"></div>
+      
+    <div id="sypheros_phase_css"></div>
+    <div id="sypheros_phase_overlay_css"></div>
+      
+    <div id="aryth_phase_css"></div>
+    <div id="aryth_phase_overlay_css"></div>
+      
+    <div id="vult_phase_css"></div>
+    <div id="vult_phase_overlay_css"></div>
+    
+    <!-- 
+    divs for the sky plot 
+    These go backwards so they can eclipse properly
+    --> 
+    
+    <div id="vult_sky_underlay_css"></div>
+    <div id="vult_sky_css"></div>
+    <div id="vult_sky_overlay_css"></div>
+    
+    <div id="aryth_sky_underlay_css"></div>
+    <div id="aryth_sky_css"></div>
+    <div id="aryth_sky_overlay_css"></div>
+    
+    <div id="sypheros_sky_underlay_css"></div>     
+    <div id="sypheros_sky_css"></div>
+    <div id="sypheros_sky_overlay_css"></div>
+    
+    <div id="rhaan_sky_underlay_css"></div>
+    <div id="rhaan_sky_css"></div>
+    <div id="rhaan_sky_overlay_css"></div>
+    
+    <div id="barrakas_sky_underlay_css"></div>
+    <div id="barrakas_sky_css"></div>
+    <div id="barrakas_sky_overlay_css"></div>
+    
+    <div id="lharvion_sky_underlay_css"></div>
+    <div id="lharvion_sky_css"></div>
+    <div id="lharvion_sky_overlay_css"></div>
+    
+    <div id="nymm_sky_underlay_css"></div>
+    <div id="nymm_sky_css"></div>
+    <div id="nymm_sky_overlay_css"></div>
+    
+    <div id="dravago_sky_underlay_css"></div>
+    <div id="dravago_sky_css"></div>
+    <div id="dravago_sky_overlay_css"></div>
+    
+    <div id="eyre_sky_underlay_css"></div>
+    <div id="eyre_sky_css"></div>
+    <div id="eyre_sky_overlay_css"></div>
+    
+    <div id="therendor_sky_underlay_css"></div>
+    <div id="therendor_sky_css"></div>
+    <div id="therendor_sky_overlay_css"></div>
+    
+    <div id="olarune_sky_underlay_css"></div>
+    <div id="olarune_sky_css"></div>
+    <div id="olarune_sky_overlay_css"></div>
+    
+    <div id="zarantyr_sky_underlay_css"></div>
+    <div id="zarantyr_sky_css"></div>
+    <div id="zarantyr_sky_overlay_css"></div>
+    
+    
+    <script src="app.js" type="text/javascript"></script>
+  </body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

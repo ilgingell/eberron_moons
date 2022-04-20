@@ -1,0 +1,852 @@
+#zarantyr_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: orange;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#therendor_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: lightgray;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #b2b2cc;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#dravago_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #b2b2cc;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #b2b2cc;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000000;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000000;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000000;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #aaaaaa;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff4500;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_css {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #aaaaaa;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#zarantyr_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid white;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid orange;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#therendor_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid white;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#dravago_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_orbit_css {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+  opacity: 0.3;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+/* Phase Circles */
+
+#ascendent_phase_halo_css {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  box-shadow:0 0 15px 0px #fff;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#zarantyr_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#zarantyr_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#therendor_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#therendor_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#dravago_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#dravago_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_phase_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius:00px;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_phase_overlay_css {
+  width: 50px;
+  height: 100px;
+  background-color: none;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+/* Sky Plot */
+
+#zarantyr_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#zarantyr_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+
+  padding: 0;
+  margin: 0px 0;
+}
+
+#zarantyr_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;   background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#olarune_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute; 
+  padding: 0;
+  margin: 0px 0;
+}
+
+#olarune_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#therendor_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#therendor_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#therendor_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#eyre_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#eyre_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+#dravago_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#dravago_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#dravago_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#nymm_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#lharvion_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#barrakas_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#sypheros_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#rhaan_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#aryth_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_sky_css {
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_sky_overlay_css {
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#vult_sky_underlay_css {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  padding: 0;
+  margin: 0px 0;
+}
+
+/* Planet Circles */
+#eberron {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #2D4671;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+#ring {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #FFFF99;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+}
+
+
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Verdana;
+}
+
+button {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 1px;
+  font-family: Verdana;
+}
