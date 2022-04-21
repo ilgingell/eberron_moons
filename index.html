@@ -17,7 +17,7 @@
   <body style="background-color:black;color:white">
 
 
-    <div class="container">
+    <div class="container" id="controls">
       <h1>The Moons of Eberron</h1>
       <p id="timertext">A virtual lunar chart.</p>
       <button id="startstop" name="StartStop">Start</button>
@@ -102,6 +102,12 @@
     divs for the sky plot 
     These go backwards so they can eclipse properly
     --> 
+    
+    <div id="skybox">
+      <hr class="horizonline"> 
+      <vl class="compassline" style="left: 25%;"></vl> 
+      <vl class="compassline" style="left: 75%;"></vl> 
+    </div>
     
     <div id="vult_sky_underlay_css"></div>
     <div id="vult_sky_css"></div>
