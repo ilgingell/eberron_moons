@@ -811,6 +811,15 @@
   margin: 0px 0;
 }
 
+#skybox {
+  border-radius: 0%;
+  position: absolute;
+  background-color: none;
+  border: 1px solid white;
+  padding: 0;
+  margin: 0px 0;
+}
+
 /* Planet Circles */
 #eberron {
   width: 20px;
@@ -849,4 +858,24 @@ button {
   border-radius: 5px;
   border: solid 1px;
   font-family: Verdana;
+}
+
+hr.horizonline { 
+  width:100%; 
+  top: 50%;
+  border: none;
+  border-top: 1px dotted white;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0; 
+}
+
+vl.compassline { 
+  height:5%;
+  bottom:47.5%;
+  border: none;
+  border-left: 1px dotted white;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0; 
 }
