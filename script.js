@@ -8,7 +8,7 @@ var angle2px = 1000
 var dt0 = 50
 
 // Coding note: x0 and y0 are in pixels, and are only ever added on plotting
-var x0 = screen.width/2;
+var x0 = window.innerWidth/2;
 var y0 = 100;
 var t0 = 28990000000;
 var time = t0;
@@ -137,7 +137,7 @@ let moon_sky_overlay_ids = [zarantyr_sky_overlay_css, olarune_sky_overlay_css, t
 let moon_sky_underlay_ids = [zarantyr_sky_underlay_css, olarune_sky_underlay_css, therendor_sky_underlay_css, eyre_sky_underlay_css, dravago_sky_underlay_css, nymm_sky_underlay_css, lharvion_sky_underlay_css, barrakas_sky_underlay_css, rhaan_sky_underlay_css, sypheros_sky_underlay_css, aryth_sky_underlay_css, vult_sky_underlay_css]
 
 // Set y0 to something sensible
-y0 = vult.orbit_radius*km2px + 100;
+y0 = window.innerHeight - document.querySelector('#controls').offsetHeight - 50 -  vult.orbit_radius*km2px;
 
 // Set planet to the correct size and position
 eberron.style.width = 2*eberron_radius + 'px';
