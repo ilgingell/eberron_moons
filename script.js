@@ -7,11 +7,8 @@ var km2px = 1/2000
 var angle2px = 1000
 var dt0 = 50
 
-var moon_ecliptic_angle = 0.5*Math.PI;
-var moon_equinox_angle = 0*Math.PI;
-
 // Coding note: x0 and y0 are in pixels, and are only ever added on plotting
-var x0 = window.innerWidth/2;
+var x0 = screen.width/2;
 var y0 = 100;
 var t0 = 28990000000;
 var time = t0;
@@ -140,11 +137,7 @@ let moon_sky_overlay_ids = [zarantyr_sky_overlay_css, olarune_sky_overlay_css, t
 let moon_sky_underlay_ids = [zarantyr_sky_underlay_css, olarune_sky_underlay_css, therendor_sky_underlay_css, eyre_sky_underlay_css, dravago_sky_underlay_css, nymm_sky_underlay_css, lharvion_sky_underlay_css, barrakas_sky_underlay_css, rhaan_sky_underlay_css, sypheros_sky_underlay_css, aryth_sky_underlay_css, vult_sky_underlay_css]
 
 // Set y0 to something sensible
-
-//y0 = vult.orbit_radius*km2px + 200;
-//y0 = screen.height - 2*document.querySelector('#controls').offsetHeight - 100 - vult.orbit_radius*km2px;
-y0 = window.innerHeight - document.querySelector('#controls').offsetHeight - 50 -  vult.orbit_radius*km2px;
-//y0 = screen.height - 350 - vult.orbit_radius*km2px;
+y0 = vult.orbit_radius*km2px + 100;
 
 // Set planet to the correct size and position
 eberron.style.width = 2*eberron_radius + 'px';
@@ -268,20 +261,10 @@ function render_at_time(time) {
   ===========================
   */
   
-  var xlen_sky = 3*vult.orbit_radius * km2px;
-  var xmin_sky = x0 - xlen_sky/2;
+  var yloc_sky = y0 - vult.orbit_radius * km2px - zarantyr.apparent_size()* angle2px;
+  var xlen_sky = 8*vult.orbit_radius * km2px;
+  var xmin_sky = x0 - 4*vult.orbit_radius * km2px;
   var xmax_sky = xmin_sky+xlen_sky;
-  
-  var ylen_sky = xlen_sky/2;
-  var ymax_sky = y0 - vult.orbit_radius * km2px - 50;
-  var ymin_sky = ymax_sky - ylen_sky;
-  
-  var yloc_sky = ymin_sky + ylen_sky/2;
-  
-  skybox.style.height = ylen_sky +'px';
-  skybox.style.width = xlen_sky +'px';
-  skybox.style.bottom = ymin_sky +'px';
-  skybox.style.left = xmin_sky +'px';
   
   var skyangle2px = xlen_sky/(2*Math.PI);
   
@@ -298,7 +281,6 @@ function render_at_time(time) {
     moon_sky_overlay_ids[i].style.width = overlay_apparent_width * skyangle2px + 'px';
     moon_sky_underlay_ids[i].style.width = moon_list[i].apparent_size() * skyangle2px + 'px';
 
-    /*
     // Position the moon, overlay and underlay in the middle of the row, independent of phase
     moon_sky_ids[i].style.bottom = yloc_sky
       -moon_list[i].apparent_size() * skyangle2px/2 + 'px';
@@ -306,20 +288,6 @@ function render_at_time(time) {
       -moon_list[i].apparent_size() * skyangle2px/2 + 'px';
     moon_sky_underlay_ids[i].style.bottom = yloc_sky
       -moon_list[i].apparent_size() * skyangle2px/2 + 'px';
-     */
-    // Position the moon, overlay and underlay in the middle of the row, independent of phase
-    moon_sky_ids[i].style.bottom = yloc_sky
-      - Math.cos(orbital_angle+moon_equinox_angle) * moon_ecliptic_angle * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
-      + 'px';
-    moon_sky_overlay_ids[i].style.bottom = yloc_sky
-      - Math.cos(orbital_angle+moon_equinox_angle) * moon_ecliptic_angle * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
-      + 'px';
-    moon_sky_underlay_ids[i].style.bottom = yloc_sky
-      - Math.cos(orbital_angle+moon_equinox_angle) * moon_ecliptic_angle * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
-      + 'px';
 
     // Just the standard height no matter the phases
     moon_sky_ids[i].style.height = moon_list[i].apparent_size() * skyangle2px + 'px';
