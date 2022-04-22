@@ -32,6 +32,10 @@ var faster_button = document.getElementById('faster');
 var slower_button = document.getElementById('slower');
 var reverse_button = document.getElementById('reverse');
 
+var namecheck_orbits = document.getElementById('namesorbits');
+var namecheck_phases = document.getElementById('namesphases');
+var namecheck_sky = document.getElementById('namessky');
+
 /*
 ===========================
 Moon class
@@ -432,3 +436,66 @@ reset_button.addEventListener('click', reset);
 faster_button.addEventListener('click', faster);
 slower_button.addEventListener('click', slower);
 reverse_button.addEventListener('click', reverse);
+
+/*
+===========================
+Functions and listeners for name display checkboxes
+===========================
+*/
+function nameset_orbits() {
+  // Get the checkbox
+  var checkBox = document.getElementById("namesorbits");
+  
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    // Turn on the labels
+    for (let i = 0; i < moon_css_ids.length; i++) {
+      moon_css_ids[i].innerHTML = '<sub>'+moon_list[i].name+'</sub>';
+    }
+  } else {
+    // Turn off the labels
+    for (let i = 0; i < moon_phase_ids.length; i++) {
+      moon_css_ids[i].innerHTML = '';
+    }
+  }
+}
+
+function nameset_phases() {
+  // Get the checkbox
+  var checkBox = document.getElementById("namesphases");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    // Turn on the labels
+    for (let i = 0; i < moon_phase_overlay_ids.length; i++) {
+      moon_phase_overlay_ids[i].innerHTML = '<span style="display:flex;justify-content: center;align-items: center;"><sub>'+moon_list[i].name+'</sub></span>';
+      moon_phase_overlay_ids[i].style.textAlign = 'center';
+    }
+  } else {
+    // Turn off the labels
+    for (let i = 0; i < moon_phase_overlay_ids.length; i++) {
+      moon_phase_overlay_ids[i].innerHTML = '';
+    }
+  }
+}
+
+function nameset_sky() {
+  // Get the checkbox
+  var checkBox = document.getElementById("namessky");
+  
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    // Turn on the labels
+    for (let i = 0; i < moon_sky_underlay_ids.length; i++) {
+      moon_sky_underlay_ids[i].innerHTML = '<sub>'+moon_list[i].name+'</sub>';
+    }
+  } else {
+    // Turn off the labels
+    for (let i = 0; i < moon_sky_underlay_ids.length; i++) {
+      moon_sky_underlay_ids[i].innerHTML = '';
+    }
+  }
+}
+
+namecheck_orbits.addEventListener('click', nameset_orbits);
+namecheck_phases.addEventListener('click', nameset_phases);
+namecheck_sky.addEventListener('click', nameset_sky);
