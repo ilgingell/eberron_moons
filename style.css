@@ -761,7 +761,7 @@
   margin: 0px 0;
 }
 
-#rhaan_sky_underlay_css {
+#sypheros_sky_underlay_css {
   border-radius: 50%;
   position: absolute;
   background-color: black;
@@ -849,6 +849,15 @@
   margin: 0 auto;
   text-align: center;
   font-family: Verdana;
+}
+
+.container_toggles {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: left;
+  font-family: Verdana;
+  position: relative;
+  left: 400px;
 }
 
 button {
