@@ -13,7 +13,7 @@ var moon_equinox_angle = 0*Math.PI;
 // Coding note: x0 and y0 are in pixels, and are only ever added on plotting
 var x0 = window.innerWidth/2;
 var y0 = 100;
-var t0 = 28990000000;
+var t0 = 28957824000;
 var time = t0;
 var dt = dt0;
 var phase_plot_gap = 20;
@@ -31,6 +31,7 @@ var startstop_button = document.getElementById('startstop');
 var faster_button = document.getElementById('faster');
 var slower_button = document.getElementById('slower');
 var reverse_button = document.getElementById('reverse');
+var settime_button = document.getElementById('settime');
 
 var namecheck_orbits = document.getElementById('namesorbits');
 var namecheck_phases = document.getElementById('namesphases');
@@ -82,7 +83,7 @@ function time2str_eberron(time) {
     
     day = Math.floor((time/(60*60*24) % 28))+1
     month = Math.floor((time/(60*60*24*28) % 12))
-    year = Math.floor(time/(60*60*24*28*12))
+    year = Math.floor(time/(60*60*24*28*12))+1
     
     time_str = hours.toString().padStart(2,'0') + ':' +
                mins.toString().padStart(2,'0') + ':' +
@@ -430,12 +431,25 @@ var reverse = function() {
   }
 }
 
+var settime = function() {
+  let newtime = prompt("Please enter a time \(seconds since 1 Zarantyr 1 YK, 00:00:00\):", time);
+  let timenum = t0;
+  if (newtime == null || isNaN(parseFloat(newtime))) {
+    timenum = time;
+  } else {
+    timenum = parseFloat(newtime);
+  }
+  time = timenum
+  render_at_time(time)
+}
+
 // Button listeners
 startstop_button.addEventListener('click', startstop);
 reset_button.addEventListener('click', reset);
 faster_button.addEventListener('click', faster);
 slower_button.addEventListener('click', slower);
 reverse_button.addEventListener('click', reverse);
+settime_button.addEventListener('click', settime);
 
 /*
 ===========================
