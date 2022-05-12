@@ -860,6 +860,11 @@
   left: 400px;
 }
 
+.container_toggles label {
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
 button {
   background-color: #000000;
   color: #fff;
