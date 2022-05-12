@@ -32,6 +32,7 @@ var faster_button = document.getElementById('faster');
 var slower_button = document.getElementById('slower');
 var reverse_button = document.getElementById('reverse');
 var settime_button = document.getElementById('settime');
+var settime_confirm_button = document.getElementById('settime_confirm');                            
 
 var namecheck_orbits = document.getElementById('namesorbits');
 var namecheck_phases = document.getElementById('namesphases');
@@ -76,7 +77,7 @@ Timestamp and date time handling
 function time2str_eberron(time) {
   // Assumes time give as seconds since seconds since Zarantyr 1st 00:00, 0 YK
   // Note: currently breaks for 'negative' times
-  secs = Math.floor((time % 60))
+    secs = Math.floor((time % 60))
     mins = Math.floor(((time/60) % 60))
     hours = Math.floor((time/(60*60) % 24))
     
@@ -103,6 +104,49 @@ function get_month(time) {
                'Nymm','Lharvion','Barrakas','Rhaan','Sypheros',
                'Aryth','Vult']
     return month_names[month]
+}
+
+function gen_timestr_eberron(secs,mins,hours,day,month,year) {
+  // Calculate a timestr given a date with separated
+  // time elements
+  secs_thru_day = secs + mins*60 + hours*60*60; 
+  secs_thru_month = (day-1)*60*60*24;
+  
+  month_names = ['Zarantyr','Olarune','Therendor','Eyre','Dravago','Nymm','Lharvion','Barrakas','Rhaan','Sypheros','Aryth','Vult']
+  
+  for (var i = 0; i < month_names.length; i++) {
+    if (month_names[i] == month) {
+      month_num = i;
+      break
+    }
+  }
+  
+  secs_thru_year = month_num*60*60*24*28;
+  secs_in_years = (year-1)*60*60*24*28*12;
+  
+  var timestamp = secs_in_years + secs_thru_year + secs_thru_month + secs_thru_day;
+  
+  return timestamp
+}
+
+function get_timeobj() {
+  secs = Math.floor((time % 60))
+  mins = Math.floor(((time/60) % 60))
+  hours = Math.floor((time/(60*60) % 24))
+
+
+  day = Math.floor((time/(60*60*24) % 28))+1
+  month = Math.floor((time/(60*60*24*28) % 12))
+  year = Math.floor(time/(60*60*24*28*12))+1
+
+  time_str = hours.toString().padStart(2,'0') + ':' +
+    mins.toString().padStart(2,'0') + ':' +
+    secs.toString().padStart(2,'0')
+
+  month_names = ['Zarantyr','Olarune','Therendor','Eyre','Dravago','Nymm','Lharvion','Barrakas','Rhaan','Sypheros','Aryth','Vult']
+
+  month_str = month_names[month];
+  return {secs, mins, hours, day, month_str,year}
 }
 
 /*
@@ -160,8 +204,8 @@ eberron.style.bottom = y0 - eberron_radius + 'px';
 ring.style.width = 2*ring_radius + 2*ring_width + 'px';
 ring.style.height = 2*ring_radius + 2*ring_width + 'px';
 ring.style.borderWidth = ring_width + 'px';
-ring.style.left = x0 - ring_radius - 2*ring_width + 'px';
-ring.style.bottom = y0 - ring_radius - 2*ring_width + 'px';
+ring.style.left = x0 - ring_radius - 1*ring_width + 'px';
+ring.style.bottom = y0 - ring_radius - 1*ring_width + 'px';
 
 // Initialise the orbit CSS
 for (let i = 0; i < moon_list.length; i++) {
@@ -432,6 +476,7 @@ var reverse = function() {
 }
 
 var settime = function() {
+  /*
   let newtime = prompt("Please enter a time \(seconds since 1 Zarantyr 1 YK, 00:00:00\):", time);
   let timenum = t0;
   if (newtime == null || isNaN(parseFloat(newtime))) {
@@ -440,6 +485,29 @@ var settime = function() {
     timenum = parseFloat(newtime);
   }
   time = timenum
+  render_at_time(time)
+  */
+  
+  clearInterval(moveMoon);
+  document.getElementById('startstop').innerHTML = "Start"
+  
+  timeobj = get_timeobj(time);
+  document.getElementById("day_set").value = timeobj.day
+  document.getElementById("month_set").value = timeobj.month_str
+  document.getElementById("year_set").value = timeobj.year
+}
+
+var settime_confirm_button = document.getElementById('settime_confirm');                            
+var settime_confirm = function() {
+ 
+  let day = document.getElementById("day_set").value
+  let month = document.getElementById("month_set").value
+  let year = document.getElementById("year_set").value
+  let clock = document.getElementById("clock_set").value
+  let min = clock.slice(-2)
+  let hour = clock.slice(0,2)
+  
+  time = gen_timestr_eberron(0,min,hour,day,month,year)
   render_at_time(time)
 }
 
@@ -450,6 +518,7 @@ faster_button.addEventListener('click', faster);
 slower_button.addEventListener('click', slower);
 reverse_button.addEventListener('click', reverse);
 settime_button.addEventListener('click', settime);
+settime_confirm_button.addEventListener('click', settime_confirm);
 
 /*
 ===========================
