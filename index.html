@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -11,21 +12,25 @@
 <html>
   
   <head>
-    <title>Moving Shape</title>
+    <title>Moons of Eberron</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
-  <body style="background-color:black;color:white">
+  <body style="background-color:black;color:white;">
 
 
     <div class="container" id="controls">
-      <h1>The Moons of Eberron</h1>
+      <h1 style='font-weight:700'>The Moons of Eberron</h1>
       <p id="timertext">A virtual lunar chart.</p>
       <button id="startstop" name="StartStop">Start</button>
       <button id="faster" name="Faster">Faster</button>
       <button id="slower" name="Slower">Slower</button>
       <button id="reverse" name="Slower">Reverse</button>
       <button id="reset" name="Reset">Reset</button>
-      <button id="settime" name="SetTime">Set Time</button>
+      <button id="settime" data-toggle="modal" data-target="#basicModal">Set Time</button>
     </div>
     
     <div class="container_toggles" id="toggles">
@@ -168,6 +173,40 @@
     <div id="zarantyr_sky_css"></div>
     <div id="zarantyr_sky_overlay_css"></div>
     
+    
+<!-- basic modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog" style="width:360px;">
+    <div class="modal-content">
+      <div class="modal-body" style="color:#000">
+        <form>
+          <input type="number" value="1" min="1" max="28" name="day_set" id="day_set"/>
+          <select name="month_set" id="month_set">
+            <option value="Zarantyr">Zarantyr</option>
+            <option value="Olarune">Olarune</option>
+            <option value="Therendor">Therendor</option>
+            <option value="Eyre">Eyre</option>
+            <option value="Dravago">Dravago</option>
+            <option value="Nymm">Nymm</option>
+            <option value="Lharvion">Lharvion</option>
+            <option value="Barrakas">Barrakas</option>
+            <option value="Rhaan">Rhaan</option>
+            <option value="Sypheros">Sypheros</option>
+            <option value="Aryth">Aryth</option>
+            <option value="Vult">Vult</option>
+          </select>
+          <input type="number" value="998" style="width:80px" name="year_set" id="year_set"/>
+          YK, 
+          <input type="time" id="clock_set" name="clock_set" value="00:00">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal">Cancel</button>
+        <button type="button" id="settime_confirm" data-dismiss="modal">Set Time</button>
+      </div>
+    </div>
+  </div>
+</div>
     
     <script src="app.js" type="text/javascript"></script>
   </body>
