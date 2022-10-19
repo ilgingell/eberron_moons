@@ -189,34 +189,33 @@ let moon_sky_overlay_ids = [zarantyr_sky_overlay_css, olarune_sky_overlay_css, t
 let moon_sky_underlay_ids = [zarantyr_sky_underlay_css, olarune_sky_underlay_css, therendor_sky_underlay_css, eyre_sky_underlay_css, dravago_sky_underlay_css, nymm_sky_underlay_css, lharvion_sky_underlay_css, barrakas_sky_underlay_css, rhaan_sky_underlay_css, sypheros_sky_underlay_css, aryth_sky_underlay_css, vult_sky_underlay_css]
 
 // Set y0 to something sensible
-
-//y0 = vult.orbit_radius*km2px + 200;
-//y0 = screen.height - 2*document.querySelector('#controls').offsetHeight - 100 - vult.orbit_radius*km2px;
-y0 = window.innerHeight - document.querySelector('#controls').offsetHeight - 50 -  vult.orbit_radius*km2px;
-//y0 = screen.height - 350 - vult.orbit_radius*km2px;
+// Currently, y0 is just setting the height of the skybox
+y0 = orbits_box.style.height/2;
 
 // Set planet to the correct size and position
 eberron.style.width = 2*eberron_radius + 'px';
 eberron.style.height = 2*eberron_radius + 'px';
 eberron.style.borderWidth = '0px';
-eberron.style.left = x0 - eberron_radius + 'px';
-eberron.style.bottom = y0 - eberron_radius + 'px';
+eberron.style.left = '50%';
+eberron.style.top = '50%';
 ring.style.width = 2*ring_radius + 2*ring_width + 'px';
 ring.style.height = 2*ring_radius + 2*ring_width + 'px';
 ring.style.borderWidth = ring_width + 'px';
-ring.style.left = x0 - ring_radius - 1*ring_width + 'px';
-ring.style.bottom = y0 - ring_radius - 1*ring_width + 'px';
+ring.style.left = '50%';
+ring.style.top = '50%';
 
 // Initialise the orbit CSS
+orbit_km2px = Math.min(document.getElementById('orbits_box').offsetHeight,document.getElementById('orbits_box').offsetWidth) / (2.2*vult.orbit_radius);
+
 for (let i = 0; i < moon_list.length; i++) {
-  orbit_css_ids[i].style.width = 2 * moon_list[i].orbit_radius * km2px + 'px';
-  orbit_css_ids[i].style.height = 2 * moon_list[i].orbit_radius * km2px + 'px';
-  orbit_css_ids[i].style.left = x0 - moon_list[i].orbit_radius * km2px + 'px';
-  orbit_css_ids[i].style.bottom = y0 - moon_list[i].orbit_radius * km2px+ 'px';
+  orbit_css_ids[i].style.width = 2 * moon_list[i].orbit_radius * orbit_km2px + 'px';
+  orbit_css_ids[i].style.height = 2 * moon_list[i].orbit_radius * orbit_km2px + 'px';
+  orbit_css_ids[i].style.left = '50%'
+  orbit_css_ids[i].style.top = '50%'
   orbit_css_ids[i].style.borderColor = moon_list[i].color;
 
-  moon_css_ids[i].style.left = x0 + moon_list[i].orbit_radius * km2px - moon_radius + 'px';
-  moon_css_ids[i].style.bottom = y0 - moon_radius + 'px';
+  //moon_css_ids[i].style.left = x0 + moon_list[i].orbit_radius * km2px - moon_radius + 'px';
+  //moon_css_ids[i].style.bottom = y0 - moon_radius + 'px';
   moon_css_ids[i].style.backgroundColor = moon_list[i].color
 }
 
@@ -230,6 +229,7 @@ function render_at_time(time) {
   MOON ORBIT PLOT
   ===========================
   */
+  
   for (let i = 0; i < moon_list.length; i++) {
     
     // Calculate the new positions in km
@@ -237,8 +237,8 @@ function render_at_time(time) {
     ypos = moon_list[i].ypos(time)
 
     // Set the position of the circle
-    moon_css_ids[i].style.left = xpos * km2px + x0 - moon_radius + 'px';
-    moon_css_ids[i].style.bottom = ypos * km2px + y0 - moon_radius + 'px';
+    moon_css_ids[i].style.left = 'calc(50% + ' + xpos * orbit_km2px + 'px)';
+    moon_css_ids[i].style.top = 'calc(50% - ' + ypos * orbit_km2px + 'px)';
   } // End orbit plot loop
   
   /*
@@ -247,10 +247,23 @@ function render_at_time(time) {
   ===========================
   */
   // xloc and yloc are going to be the top left of the WHOLE circle
-  var xloc = x0 - vult.orbit_radius * km2px - zarantyr.apparent_size()* angle2px
-  var yloc = 100
+  //var xloc = x0 - vult.orbit_radius * km2px - zarantyr.apparent_size()* angle2px
+  phases_height = document.getElementById('phases_box').offsetHeight
+  phases_width = document.getElementById('phases_box').offsetWidth
+
+  var xloc = phase_plot_gap
+  //var xloc = document.getElementById('phases_box').offsetWidth/2
+
+  var yloc = phases_height/2
   
-  prev_height = yloc
+  // Calculate total angular height of all moons
+  var total_ang = 0
+  for (let i = 0; i < moon_phase_ids.length; i++) {
+    total_ang += moon_list[i].apparent_size();
+  }
+  angle2px = (phases_width - phase_plot_gap*(moon_phase_ids.length+1))/(total_ang)
+  
+  prev_height = xloc
   for (let i = 0; i < moon_phase_ids.length; i++) {
     
     // Calculate orbit angle
@@ -258,34 +271,33 @@ function render_at_time(time) {
 
     moon_phase_ids[i].style.backgroundColor = moon_list[i].color;
     // It's always going to be half width
+    moon_phase_ids[i].style.top = '50%';
     moon_phase_ids[i].style.width = moon_list[i].apparent_size() * angle2px/2 + 'px';
     overlay_apparent_width = moon_list[i].apparent_size() * Math.abs(Math.cos(orbital_angle));
     moon_phase_overlay_ids[i].style.width = overlay_apparent_width * angle2px + 'px';
 
-    // Position the overlay in the middle, independent of phase
-    moon_phase_overlay_ids[i].style.left = xloc -overlay_apparent_width * angle2px/2 + 'px';
+    // Position the overlay in the centre, independent of phase
+    moon_phase_overlay_ids[i].style.top = '50%';
 
-    // Just the standard height and yloc no matter the phases
+    // Just the standard height and xloc no matter the phases
     moon_phase_ids[i].style.height = moon_list[i].apparent_size() * angle2px + 'px';
     moon_phase_overlay_ids[i].style.height = moon_list[i].apparent_size() * angle2px + 'px';
-    moon_phase_ids[i].style.top = prev_height + 'px';
-    moon_phase_overlay_ids[i].style.top = prev_height + 'px';
+    //moon_phase_ids[i].style.left = prev_height + 'px';
+    moon_phase_overlay_ids[i].style.left = prev_height + moon_list[i].apparent_size() * angle2px/2 + 'px';
     
     // Put the ascendency halo in the right place
     if (moon_list[i].name == get_month(time)) {
       ascendent_phase_halo_css.style.width = moon_list[i].apparent_size() * angle2px + 'px';
       ascendent_phase_halo_css.style.height = moon_list[i].apparent_size() * angle2px + 'px';
-      ascendent_phase_halo_css.style.left = xloc - moon_list[i].apparent_size() * angle2px/2 + 'px';
-      ascendent_phase_halo_css.style.top = prev_height + 'px';
+      //ascendent_phase_halo_css.style.top = yloc - moon_list[i].apparent_size() * angle2px/2 + 'px';
+      ascendent_phase_halo_css.style.top = '50%'
+      ascendent_phase_halo_css.style.left = prev_height + 'px';
       ascendent_phase_halo_css.style.boxShadow = '0 0 '+ moon_list[i].apparent_size() * angle2px+ 'px 0px #fff';
     }
     
-    // Prev height is set to stack them one on top of the other
-    prev_height = prev_height + phase_plot_gap + moon_list[i].apparent_size() * angle2px;
-
     if (orbital_angle < Math.PI) {
       // Main on the right
-      moon_phase_ids[i].style.left = xloc + 'px';
+      moon_phase_ids[i].style.left = prev_height + moon_list[i].apparent_size()/2 * angle2px + 'px';
       moon_phase_ids[i].style.borderTopRightRadius = moon_list[i].apparent_size() * angle2px + 'px';
       moon_phase_ids[i].style.borderBottomRightRadius = moon_list[i].apparent_size() * angle2px + 'px';
       moon_phase_ids[i].style.borderTopLeftRadius = '0px';
@@ -297,7 +309,7 @@ function render_at_time(time) {
       }
     } else {
       // Main on the left
-      moon_phase_ids[i].style.left = xloc - moon_list[i].apparent_size()/2 * angle2px + 'px';
+      moon_phase_ids[i].style.left = prev_height + 'px';
       moon_phase_ids[i].style.borderTopRightRadius = '0px';
       moon_phase_ids[i].style.borderBottomRightRadius = '0px';
       moon_phase_ids[i].style.borderTopLeftRadius = moon_list[i].apparent_size() * angle2px + 'px';
@@ -307,8 +319,10 @@ function render_at_time(time) {
       } else {
         moon_phase_overlay_ids[i].style.backgroundColor = moon_list[i].color
       }
-      
     }
+    // Prev height is set to stack them one on top of the other
+    prev_height = prev_height + phase_plot_gap + moon_list[i].apparent_size() * angle2px;
+
   } // End moon phase plot
   
   /*
@@ -317,21 +331,18 @@ function render_at_time(time) {
   ===========================
   */
   
-  var xlen_sky = 3*vult.orbit_radius * km2px;
-  var xmin_sky = x0 - xlen_sky/2;
+  var xlen_sky = 500;//document.getElementById('skybox').offsetWidth;
+  var xmin_sky = 0;
   var xmax_sky = xmin_sky+xlen_sky;
   
   //var ylen_sky = xlen_sky/(Math.PI/2);
   var ylen_sky = xlen_sky/2;
-  var ymax_sky = y0 - vult.orbit_radius * km2px - 50;
-  var ymin_sky = ymax_sky - ylen_sky;
+  var ymin_sky = 0;
+  var ymax_sky = ymin_sky + ylen_sky;
   
   var yloc_sky = ymin_sky + ylen_sky/2;
   
   skybox.style.height = ylen_sky +'px';
-  skybox.style.width = xlen_sky +'px';
-  skybox.style.bottom = ymin_sky +'px';
-  skybox.style.left = xmin_sky +'px';
   
   var skyangle2px = xlen_sky/(2*Math.PI);
   
