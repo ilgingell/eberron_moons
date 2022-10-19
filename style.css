@@ -1,3 +1,100 @@
+
+/* Main boxes */
+#orbits_box {
+  width: 500px;
+  height: 500px;
+  background-color: none;
+  border: 1px solid white;
+  padding: 0;
+  margin: 20px 0;
+  position:relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#phases_box {
+  width: 500px;
+  height: 100px;
+  background-color: none;
+  border: 1px solid white;
+  padding: 0;
+  margin: 20px 0;
+  position:relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#skybox {
+  width: 500px;
+  border-radius: 0%;
+  position: relative;
+  background-color: none;
+  border: 1px solid white;
+  padding: 0;
+  margin: 20px 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container {
+  width: 100%;
+  min-width: 500px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Verdana;
+  position: relative;
+  border: 0px solid white;
+}
+
+.container_toggles {
+  width: 100px;
+  margin: 0 auto;
+  text-align: left;
+  font-family: Verdana;
+  position: absolute;
+  left: calc(50% + 260px);
+  top: 170px;
+  border: 0px solid white;
+}
+
+.container_toggles label {
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+button {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 1px;
+  font-family: Verdana;
+}
+
+hr.horizonline { 
+  width:100%; 
+  top: 50%;
+  border: none;
+  border-top: 1px dotted white;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0; 
+}
+
+vl.compassline { 
+  height:5%;
+  bottom:47.5%;
+  border: none;
+  border-left: 1px dotted white;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0; 
+}
+
+
+/* Orbit moons */
+
 #zarantyr_css {
   width: 10px;
   height: 10px;
@@ -6,6 +103,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #olarune_css {
@@ -16,6 +114,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #therendor_css {
@@ -26,6 +125,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #eyre_css {
@@ -36,6 +136,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #dravago_css {
@@ -46,6 +147,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #nymm_css {
@@ -56,6 +158,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #lharvion_css {
@@ -66,6 +169,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #barrakas_css {
@@ -76,6 +180,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #rhaan_css {
@@ -86,6 +191,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #sypheros_css {
@@ -96,6 +202,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #aryth_css {
@@ -106,6 +213,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #vult_css {
@@ -116,6 +224,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #zarantyr_orbit_css {
@@ -128,6 +237,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #olarune_orbit_css {
@@ -140,6 +250,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #therendor_orbit_css {
@@ -152,6 +263,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #eyre_orbit_css {
@@ -164,6 +276,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 
@@ -177,6 +290,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #nymm_orbit_css {
@@ -189,6 +303,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #lharvion_orbit_css {
@@ -201,6 +316,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #barrakas_orbit_css {
@@ -213,6 +329,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #rhaan_orbit_css {
@@ -225,6 +342,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #sypheros_orbit_css {
@@ -237,6 +355,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #aryth_orbit_css {
@@ -249,6 +368,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #vult_orbit_css {
@@ -261,7 +381,33 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
+
+/* Planet Circles */
+#eberron {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #2D4671;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+  transform: translate(-50%,-50%);
+}
+
+#ring {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #FFFF99;
+  background-color: none;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;
+  transform: translate(-50%,-50%);
+}
+
 
 /* Phase Circles */
 
@@ -274,6 +420,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #zarantyr_phase_css {
@@ -287,6 +434,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #zarantyr_phase_overlay_css {
@@ -297,6 +445,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #olarune_phase_css {
@@ -310,6 +459,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #olarune_phase_overlay_css {
@@ -320,6 +470,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #therendor_phase_css {
@@ -333,6 +484,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #therendor_phase_overlay_css {
@@ -343,6 +495,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #eyre_phase_css {
@@ -356,6 +509,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #eyre_phase_overlay_css {
@@ -366,6 +520,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #dravago_phase_css {
@@ -379,6 +534,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #dravago_phase_overlay_css {
@@ -389,6 +545,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #nymm_phase_css {
@@ -402,6 +559,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #nymm_phase_overlay_css {
@@ -412,6 +570,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #lharvion_phase_css {
@@ -425,6 +584,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #lharvion_phase_overlay_css {
@@ -435,6 +595,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #barrakas_phase_css {
@@ -448,6 +609,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #barrakas_phase_overlay_css {
@@ -457,7 +619,8 @@
   border-radius: 50%;
   position: absolute;
   padding: 0;
-  margin: 0px 0;
+  margin: 0px 0;  
+  transform: translate(-50%,-50%);
 }
 
 #rhaan_phase_css {
@@ -471,6 +634,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #rhaan_phase_overlay_css {
@@ -481,6 +645,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #sypheros_phase_css {
@@ -494,6 +659,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #sypheros_phase_overlay_css {
@@ -504,6 +670,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #aryth_phase_css {
@@ -517,6 +684,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #aryth_phase_overlay_css {
@@ -527,6 +695,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 #vult_phase_css {
@@ -540,6 +709,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translateY(-50%);
 }
 
 #vult_phase_overlay_css {
@@ -550,6 +720,7 @@
   position: absolute;
   padding: 0;
   margin: 0px 0;
+  transform: translate(-50%,-50%);
 }
 
 /* Sky Plot */
@@ -570,7 +741,8 @@
 
 #zarantyr_sky_underlay_css {
   border-radius: 50%;
-  position: absolute;   background-color: black;
+  position: absolute;   
+  background-color: black;
   padding: 0;
   margin: 0px 0;
 }
@@ -809,87 +981,4 @@
   background-color: black;
   padding: 0;
   margin: 0px 0;
-}
-
-#skybox {
-  border-radius: 0%;
-  position: absolute;
-  background-color: none;
-  border: 1px solid white;
-  padding: 0;
-  margin: 0px 0;
-}
-
-/* Planet Circles */
-#eberron {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #2D4671;
-  position: absolute;
-  padding: 0;
-  margin: 0px 0;
-}
-
-#ring {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 2px solid #FFFF99;
-  background-color: none;
-  position: absolute;
-  padding: 0;
-  margin: 0px 0;
-}
-
-
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: Verdana;
-}
-
-.container_toggles {
-  max-width: 300px;
-  margin: 0 auto;
-  text-align: left;
-  font-family: Verdana;
-  position: relative;
-  left: 400px;
-}
-
-.container_toggles label {
-  font-weight: 400;
-  margin-bottom: 0px;
-}
-
-button {
-  background-color: #000000;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  border: solid 1px;
-  font-family: Verdana;
-}
-
-hr.horizonline { 
-  width:100%; 
-  top: 50%;
-  border: none;
-  border-top: 1px dotted white;
-  position: absolute;
-  padding: 0;
-  margin: 0px 0; 
-}
-
-vl.compassline { 
-  height:5%;
-  bottom:47.5%;
-  border: none;
-  border-left: 1px dotted white;
-  position: absolute;
-  padding: 0;
-  margin: 0px 0; 
 }
