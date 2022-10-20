@@ -23,7 +23,7 @@
 
 
     <div class="container" id="controls">
-      <h1 style='font-weight:700'>The Moons of Eberron</h1>
+      <h1 style='font-weight:700;font-family:Masoch-Dirach'>The Moons of Eberron</h1>
       <p id="timertext">A virtual lunar chart.</p>
       <button id="startstop" name="StartStop">Start</button>
       <button id="faster" name="Faster">Faster</button>
@@ -44,10 +44,11 @@
     </div>
 
     <div id='orbits_box'>
+      <div id='tmt_time_line'></div>
+      <div id='time_line'></div>
       <div id="eberron"></div>
       <div id="ring"></div>
       <div id="arrah"></div>
-      <div id='time_line'></div>
 
       <!-- divs for the orbit rings -->
       <div id='zarantyr_orbit_css'></div>
@@ -126,11 +127,11 @@
     --> 
     
     <div id="skybox">
-      <hr class="horizonline"> 
-      <vl class="compassline" style="left: 25%;"></vl> 
-      <vl class="compassline" style="left: 75%;"></vl> 
       <div id='sky_overlay'></div>
-      <div id='ground_overlay'></div>
+      
+      
+      
+      <div id="arrah_sky_css"></div>
     
       <div id="vult_sky_underlay_css"></div>
       <div id="vult_sky_css"></div>
@@ -180,6 +181,12 @@
       <div id="zarantyr_sky_css"></div>
       <div id="zarantyr_sky_overlay_css"></div>
       
+      
+      <div id='ground_overlay'></div>
+      
+      <hr class="horizonline"> 
+      <vl class="compassline" style="left: 25%;"></vl> 
+      <vl class="compassline" style="left: 75%;"></vl> 
     </div>
     
     
@@ -208,8 +215,16 @@
                 <option value="Vult">Vult</option>
               </select>
               <input type="number" value="998" style="width:80px" name="year_set" id="year_set"/>
-              YK, 
-              <input type="time" id="clock_set" name="clock_set" value="00:00">
+              YK <br> 
+              <input type="time" id="clock_set" name="clock_set" value="00:00"> TMT <br>
+              Timezone:
+              <select name="time_zone_set" id="time_zone_set">
+                <option value="-2">TMT-2 (The Great Crag)</option>
+                <option value="-1">TMT-1 (Wroat, Sharn)</option>
+                <option value="0" selected="selected">TMT+0 (Thronehold)</option>
+                <option value="+1">TMT+1 (Korunda Gate)</option>
+                <option value="+12">TMT+12 (Durat Tal, Dar Jin)</option>
+              </select>
             </form>
           </div>
           <div class="modal-footer">
