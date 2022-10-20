@@ -12,6 +12,20 @@
   transform: translateX(-50%);
 }
 
+#time_line {
+  width: 50%;
+  height: 0px;
+  background-color: none;
+  border: 1px dashed white;
+  padding: 0;
+  margin: 0px 0;
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center right;
+  transform: translate(-100%,-0%) rotate(-0deg);
+}
+
 #phases_box {
   width: 500px;
   height: 100px;
@@ -407,7 +421,19 @@ vl.compassline {
   margin: 0px 0;
   transform: translate(-50%,-50%);
 }
-
+#arrah {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: lightyellow;
+  box-shadow:0 0 20px 0px #fff;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  padding: 0;
+  margin: 0px 0;
+  transform: translate(-50%,-50%);
+}
 
 /* Phase Circles */
 
@@ -724,6 +750,24 @@ vl.compassline {
 }
 
 /* Sky Plot */
+
+#sky_overlay {
+  height: 50%;
+  width: 100%;
+  position:absolute;
+  left: 0;
+  top: 0;
+  /* background-color: #0ff4; */
+}
+
+#ground_overlay {
+  height: 50%;
+  width: 100%;
+  position:absolute;
+  left: 0;
+  top: 50%;
+  background-color: #ffa4;
+}
 
 #zarantyr_sky_css {
   position: absolute;
