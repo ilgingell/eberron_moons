@@ -15,6 +15,7 @@ var x0 = window.innerWidth/2;
 var y0 = 100;
 var t0 = 28957824000;
 var time = t0;
+var time_zone = 0;
 var dt = dt0;
 var phase_plot_gap = 20;
 
@@ -151,6 +152,21 @@ function get_timeobj() {
 
 /*
 ===========================
+Color Handling
+===========================
+*/
+
+function value_to_hex(c) {
+  var hex = c.toString(16);
+  var hex_filled = ('00'+hex).slice(-2)
+  return hex_filled
+}
+function rgb_to_hex(rgb) {
+  return ('#' + value_to_hex(rgb[0]) + value_to_hex(rgb[1]) + value_to_hex(rgb[2]))
+}
+  
+/*
+===========================
 Initialisations
 ===========================
 */
@@ -225,7 +241,11 @@ function render_at_time(time) {
   document.getElementById("timertext").innerHTML = time2str_eberron(time);
   
   // Define the viewing angle for the various plots
-  view_angle = 360 * (time % (60*60*24))/(60*60*24);
+  if (time_zone < 0) {
+    time_zone = 24+time_zone;
+  }
+  tmt_view_angle = (360 * (time % (60*60*24))/(60*60*24)) % 360;
+  view_angle = (360 * (time % (60*60*24))/(60*60*24) + 15 * time_zone) % 360;
   
   /*
   ===========================
@@ -235,6 +255,7 @@ function render_at_time(time) {
   
   // Rotate the time line according to the view angle
   time_line.style.transform = 'translate(-100%,-0%) rotate(-'+view_angle+'deg)';
+  tmt_time_line.style.transform = 'translate(-100%,-0%) rotate(-'+tmt_view_angle+'deg)';
   
   for (let i = 0; i < moon_list.length; i++) {
     
@@ -337,7 +358,7 @@ function render_at_time(time) {
   ===========================
   */
   
-  var xlen_sky = 500;//document.getElementById('skybox').offsetWidth;
+  var xlen_sky = document.getElementById('skybox').offsetWidth;
   var xmin_sky = 0;
   var xmax_sky = xmin_sky+xlen_sky;
   
@@ -353,15 +374,50 @@ function render_at_time(time) {
   var skyangle2px = xlen_sky/(2*Math.PI);
   
   // Set color of sky
+  day_color = [0,100,200];
+  night_color = [0,0,0];
+  
   if (view_angle > 95 && view_angle < 265) {
-      sky_overlay.style.backgroundColor = '#0ff4'
+      interp_frac = 1;
   } else if (view_angle >= 85 && view_angle <= 95) {
-      sky_overlay.style.backgroundColor = '#0ff' + Math.floor((view_angle-85)/4);
+      interp_frac = (view_angle-85)/10;
   } else if (view_angle >= 265 && view_angle <= 275) {
-      sky_overlay.style.backgroundColor = '#0ff' + Math.floor((275-view_angle)/4);
+      interp_frac = 1-(view_angle-265)/10;
+      //sky_color = '#0ff' + Math.floor((275-view_angle)/4);
   } else {
-      sky_overlay.style.backgroundColor = '#0000'
+      interp_frac = 0;
   }
+  rcol = Math.floor(interp_frac*day_color[0] + (1-interp_frac)*night_color[0]);
+  gcol = Math.floor(interp_frac*day_color[1] + (1-interp_frac)*night_color[1]);
+  bcol = Math.floor(interp_frac*day_color[2] + (1-interp_frac)*night_color[2]);
+  sky_color = rgb_to_hex([rcol,gcol,bcol])
+  sky_overlay.style.backgroundColor = sky_color;
+  
+  // Set size of the Sun
+  arrah_sky_css.style.width = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
+  arrah_sky_css.style.height = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
+  orbital_angle =  (view_angle * Math.PI/180) % (2*Math.PI);
+  // Calc longitude and latitude of Sun
+  if (orbital_angle>Math.PI) {  
+      moon_latitude = Math.PI/2-orbital_angle;
+      moon_longitude = 3*Math.PI/2;
+  } else {
+    moon_latitude = orbital_angle-3*Math.PI/2;
+    moon_longitude = Math.PI/2;
+  }
+  moonx = moon_longitude;
+  moony = moon_latitude;
+  // Set Position of Sun
+  //arrah_sky_css.style.bottom = '50%'
+  //arrah_sky_css.style.left = '50%'
+  arrah_sky_css.style.bottom = ymin_sky+1.5*ylen_sky
+    + moony * skyangle2px
+    - 0.5 * Math.PI/180 * skyangle2px/2 
+    + 'px';
+  arrah_sky_css.style.left = xmin_sky 
+    + moonx * skyangle2px
+    - 0.5 * Math.PI/180 * skyangle2px/2 
+    + 'px';
   
   for (let i = 0; i < moon_sky_ids.length; i++) {
     // This one if fixed to midnight meridian
@@ -372,6 +428,7 @@ function render_at_time(time) {
     
     // Set the color
     moon_sky_ids[i].style.backgroundColor = moon_list[i].color;
+    moon_sky_underlay_ids[i].style.backgroundColor = sky_color;
     
     // It's always going to be half width fpr the sky moon
     moon_sky_ids[i].style.width = moon_list[i].apparent_size() * skyangle2px/2 + 'px';
@@ -447,7 +504,7 @@ function render_at_time(time) {
       moon_sky_ids[i].style.borderTopLeftRadius = '0px';
       moon_sky_ids[i].style.borderBottomLeftRadius = '0px';
       if ((orbital_angle < Math.PI/2) || (orbital_angle > 3*Math.PI/2)) {
-        moon_sky_overlay_ids[i].style.backgroundColor = 'black'
+        moon_sky_overlay_ids[i].style.backgroundColor = sky_color
       } else {
         moon_sky_overlay_ids[i].style.backgroundColor = moon_list[i].color
       }
@@ -462,7 +519,7 @@ function render_at_time(time) {
       moon_sky_ids[i].style.borderTopLeftRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
       moon_sky_ids[i].style.borderBottomLeftRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
       if ((orbital_angle < Math.PI/2) || (orbital_angle > 3*Math.PI/2)) {
-        moon_sky_overlay_ids[i].style.backgroundColor = 'black'
+        moon_sky_overlay_ids[i].style.backgroundColor = sky_color
       } else {
         moon_sky_overlay_ids[i].style.backgroundColor = moon_list[i].color
       }
@@ -471,7 +528,7 @@ function render_at_time(time) {
   
 } // End rendering function
 
-// Finish the initialisation by running render_at_time for t0
+// Finish the initialisation by running render_at_time for t0, time zone TMT+0
 render_at_time(t0)
 
 /*
@@ -548,6 +605,13 @@ var settime = function() {
   document.getElementById("day_set").value = timeobj.day
   document.getElementById("month_set").value = timeobj.month_str
   document.getElementById("year_set").value = timeobj.year
+  console.log(timeobj.hours + ':' + timeobj.mins)
+  
+  hours_now = timeobj.hours
+  mins_now = timeobj.mins
+  timestr_now = hours_now.toString().padStart(2,'0') + ':' + mins_now.toString().padStart(2,'0')
+  
+  document.getElementById("clock_set").value =  timestr_now
 }
 
 var settime_confirm_button = document.getElementById('settime_confirm');                            
@@ -561,6 +625,7 @@ var settime_confirm = function() {
   let hour = clock.slice(0,2)
   
   time = gen_timestr_eberron(0,min,hour,day,month,year)
+  time_zone = document.getElementById("time_zone_set").value
   render_at_time(time)
 }
 
