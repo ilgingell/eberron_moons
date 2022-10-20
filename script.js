@@ -245,6 +245,7 @@ function render_at_time(time) {
     time_zone = 24+time_zone;
   }
   tmt_view_angle = (360 * (time % (60*60*24))/(60*60*24)) % 360;
+  console.log(time_zone)
   view_angle = (360 * (time % (60*60*24))/(60*60*24) + 15 * time_zone) % 360;
   
   /*
@@ -605,7 +606,6 @@ var settime = function() {
   document.getElementById("day_set").value = timeobj.day
   document.getElementById("month_set").value = timeobj.month_str
   document.getElementById("year_set").value = timeobj.year
-  console.log(timeobj.hours + ':' + timeobj.mins)
   
   hours_now = timeobj.hours
   mins_now = timeobj.mins
@@ -625,7 +625,7 @@ var settime_confirm = function() {
   let hour = clock.slice(0,2)
   
   time = gen_timestr_eberron(0,min,hour,day,month,year)
-  time_zone = document.getElementById("time_zone_set").value
+  time_zone = Number(document.getElementById("time_zone_set").value)
   render_at_time(time)
 }
 
