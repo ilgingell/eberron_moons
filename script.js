@@ -224,11 +224,17 @@ function render_at_time(time) {
   // This draws the whole plot at a given time
   document.getElementById("timertext").innerHTML = time2str_eberron(time);
   
+  // Define the viewing angle for the various plots
+  view_angle = 360 * (time % (60*60*24))/(60*60*24);
+  
   /*
   ===========================
   MOON ORBIT PLOT
   ===========================
   */
+  
+  // Rotate the time line according to the view angle
+  time_line.style.transform = 'translate(-100%,-0%) rotate(-'+view_angle+'deg)';
   
   for (let i = 0; i < moon_list.length; i++) {
     
@@ -346,8 +352,24 @@ function render_at_time(time) {
   
   var skyangle2px = xlen_sky/(2*Math.PI);
   
+  // Set color of sky
+  if (view_angle > 95 && view_angle < 265) {
+      sky_overlay.style.backgroundColor = '#0ff4'
+  } else if (view_angle >= 85 && view_angle <= 95) {
+      sky_overlay.style.backgroundColor = '#0ff' + Math.floor((view_angle-85)/4);
+  } else if (view_angle >= 265 && view_angle <= 275) {
+      sky_overlay.style.backgroundColor = '#0ff' + Math.floor((275-view_angle)/4);
+  } else {
+      sky_overlay.style.backgroundColor = '#0000'
+  }
+  
   for (let i = 0; i < moon_sky_ids.length; i++) {
-    orbital_angle = 2*Math.PI - (2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) % (2*Math.PI);
+    // This one if fixed to midnight meridian
+    //orbital_angle = 2*Math.PI - (2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) % (2*Math.PI);
+    
+    // This one if fixed to a moving point on the surface
+    orbital_angle = 2*Math.PI - ((2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) - view_angle * Math.PI/180) % (2*Math.PI);
+    
     // Set the color
     moon_sky_ids[i].style.backgroundColor = moon_list[i].color;
     
