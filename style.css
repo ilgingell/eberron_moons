@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Masoch-Dirach';
+    src: url("Masoch-Dirach.otf") format("opentype")
+         local('Masoch-Dirach') format("opentype")
+}
 
 /* Main boxes */
 #orbits_box {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   background-color: none;
   border: 1px solid white;
   padding: 0;
@@ -26,9 +31,23 @@
   transform: translate(-100%,-0%) rotate(-0deg);
 }
 
+#tmt_time_line {
+  width: 50%;
+  height: 0px;
+  background-color: none;
+  border: 1px dashed #222;
+  padding: 0;
+  margin: 0px 0;
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center right;
+  transform: translate(-100%,-0%) rotate(-0deg);
+}
+
 #phases_box {
-  width: 500px;
-  height: 100px;
+  width: 600px;
+  height: 140px;
   background-color: none;
   border: 1px solid white;
   padding: 0;
@@ -39,7 +58,7 @@
 }
 
 #skybox {
-  width: 500px;
+  width: 600px;
   border-radius: 0%;
   position: relative;
   background-color: none;
@@ -67,7 +86,7 @@
   text-align: left;
   font-family: Verdana;
   position: absolute;
-  left: calc(50% + 260px);
+  left: calc(50% + 310px);
   top: 170px;
   border: 0px solid white;
 }
@@ -766,7 +785,18 @@ vl.compassline {
   position:absolute;
   left: 0;
   top: 50%;
-  background-color: #ffa4;
+  background-color: #442;
+}
+
+#arrah_sky_css {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: lightyellow;
+  box-shadow:0 0 20px 0px #fff;
+  position: absolute;
+  padding: 0;
+  margin: 0px 0;;
 }
 
 #zarantyr_sky_css {
