@@ -238,7 +238,7 @@ for (let i = 0; i < moon_list.length; i++) {
 function render_at_time(time) {
   // Define the main rendering function
   // This draws the whole plot at a given time
-  document.getElementById("timertext").innerHTML = time2str_eberron(time);
+  document.getElementById("timertext").innerHTML = time2str_eberron(time) + ' TMT';
   
   // Define the viewing angle for the various plots
   if (time_zone < 0) {
@@ -375,24 +375,36 @@ function render_at_time(time) {
   var skyangle2px = xlen_sky/(2*Math.PI);
   
   // Set color of sky
-  day_color = [0,100,200];
+  day_color = [90,140,200];
   night_color = [0,0,0];
+  //ground_day_color = [68,68,34];
+  ground_day_color = [180,150,110];
+  ground_night_color = [110,90,67];
+  //ground_day_color = [110,90,67];
+  //ground_night_color = [65,45,33];
   
+  // Calculate the interpolation fraction between the day and night colors
   if (view_angle > 95 && view_angle < 265) {
       interp_frac = 1;
   } else if (view_angle >= 85 && view_angle <= 95) {
       interp_frac = (view_angle-85)/10;
   } else if (view_angle >= 265 && view_angle <= 275) {
       interp_frac = 1-(view_angle-265)/10;
-      //sky_color = '#0ff' + Math.floor((275-view_angle)/4);
   } else {
       interp_frac = 0;
   }
+  // Set RGB for the sky
   rcol = Math.floor(interp_frac*day_color[0] + (1-interp_frac)*night_color[0]);
   gcol = Math.floor(interp_frac*day_color[1] + (1-interp_frac)*night_color[1]);
   bcol = Math.floor(interp_frac*day_color[2] + (1-interp_frac)*night_color[2]);
   sky_color = rgb_to_hex([rcol,gcol,bcol])
   sky_overlay.style.backgroundColor = sky_color;
+  // Set RGB for the ground
+  rcol = Math.floor(interp_frac*ground_day_color[0] + (1-interp_frac)*ground_night_color[0]);
+  gcol = Math.floor(interp_frac*ground_day_color[1] + (1-interp_frac)*ground_night_color[1]);
+  bcol = Math.floor(interp_frac*ground_day_color[2] + (1-interp_frac)*ground_night_color[2]);
+  ground_color = rgb_to_hex([rcol,gcol,bcol])
+  ground_overlay.style.backgroundColor = ground_color;
   
   // Set size of the Sun
   arrah_sky_css.style.width = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
