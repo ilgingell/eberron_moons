@@ -454,6 +454,7 @@ function render_at_time(time) {
   // Set size of the Sun
   arrah_sky_css.style.width = moon_size_multiplier * 0.5 * Math.PI/180 * skyangle2px + 'px';
   arrah_sky_css.style.height = moon_size_multiplier * 0.5 * Math.PI/180 * skyangle2px + 'px';
+  arrah_sky_css.style.boxShadow = '0 0 '+ moon_size_multiplier * 0.5 * skyangle2px+ 'px 0px #fff';
   /*
   // Calc longitude and latitude of Sun
   if (orbital_angle>Math.PI) {  
@@ -545,12 +546,18 @@ function render_at_time(time) {
      */
     //orbital_angle2 = ((2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase))
 
+    // Calculate the effective change in viewing latitude due to looking 
+    // 'down' over the equatorial plane from the planet's surface
+    adjusted_lat = (180/Math.PI) * Math.atan2((R_E * Math.sin(view_lat * Math.PI/180)),(moon_list[i].orbit_radius-R_E* Math.cos(view_lat * Math.PI/180)))
     
     var xpos_tmp = moon_list[i].orbit_radius * Math.cos(orbital_angle2)
     var ypos_tmp = moon_list[i].orbit_radius * Math.sin(orbital_angle2)
     
     var angle_output
-    angle_output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat)
+    //angle_output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat)
+    angle_output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat+adjusted_lat)
+    
+    //view_lat -= adjusted_lat;
     moonx = angle_output[1]
     moony = angle_output[0]
     if (moonx < 0) {
@@ -795,8 +802,8 @@ Functions and listeners for settings menu
 */
 
 var settings_confirm = function() {
-  view_lat = document.getElementById("view_lat_set").value
-  moon_size_multiplier = document.getElementById("size_multiplier_set").value
+  view_lat = parseFloat(document.getElementById("view_lat_set").value)
+  moon_size_multiplier = parseFloat(document.getElementById("size_multiplier_set").value)
   
   render_at_time(time)
 }
