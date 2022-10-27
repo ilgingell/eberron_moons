@@ -14,6 +14,7 @@ The Moons of Eberron article doesn't provide *everything* we need to know to ful
 * The moons all orbit in the same plane, which is the the planet Eberron's equatorial plane.
 * There is a conjunction of all the moons opposite the Sun at t=0, which corresponds to midnight on the first day of 1YK.
 * The planet has no axial tilt. Seasons occur due to the influence of Fernia and Risia.
+* Eberron's day is 24 hours long.
 
 ## FAQs
 
@@ -25,3 +26,6 @@ The timezone suggestions given in the Set Time box assume that:
 * The 5000 mile scale bar given on the inside cover map of the 3.5e Eberron campaign setting is reasonable along the equator.
 * The planet's circumference is the same as Earth.
 The benefit of this is that it leads to 'reasonable' seeming timezones across Khorvaire. For example, the whole continent is about 5 timezones wide, similar to North America. One drawback is that this would mean there is an enormous ocean on the 'far' side of the planet, which stretches the credibility of eastern migrations from Sarlona to Khorvaire.
+
+**Why do Zarantyr and Olarune go 'backwards' in the sky view?**
+These two moons rise in the West and set in the East because their orbital period is faster than 1 day. The dotted line in the orbit plot at the top is the viewing line of a person standing on the planet as it rotates. You can see that Zarantyr and Olarune 'catch up' to this line, crossing it in a different direction to all the other moons.
