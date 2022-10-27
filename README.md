@@ -27,5 +27,5 @@ The timezone suggestions given in the Set Time box assume that:
 * The planet's circumference is the same as Earth.
 The benefit of this is that it leads to 'reasonable' seeming timezones across Khorvaire. For example, the whole continent is about 5 timezones wide, similar to North America. One drawback is that this would mean there is an enormous ocean on the 'far' side of the planet, which stretches the credibility of eastern migrations from Sarlona to Khorvaire.
 
-**Why do Zarantyr and Olarune go 'backwards' in the sky view?**
+**Why do Zarantyr and Olarune go 'backwards' in the sky view?**  
 These two moons rise in the West and set in the East because their orbital period is faster than 1 day. The dotted line in the orbit plot at the top is the viewing line of a person standing on the planet as it rotates. You can see that Zarantyr and Olarune 'catch up' to this line, crossing it in a different direction to all the other moons.
