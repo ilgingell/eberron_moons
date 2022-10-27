@@ -24,6 +24,10 @@ var eberron_radius = 4;
 var ring_radius = 1.5 * eberron_radius;
 var ring_width = 2;
 
+var moon_size_multiplier = 4;
+
+var view_lat = 30;
+
 var xpos = x0;
 var ypos = y0;
 
@@ -398,8 +402,6 @@ function render_at_time(time) {
   ===========================
   */
   
-  var view_lat = 30
-  
   var xlen_sky = document.getElementById('skybox').offsetWidth;
   var xmin_sky = 0;
   var xmax_sky = xmin_sky+xlen_sky;
@@ -448,8 +450,8 @@ function render_at_time(time) {
   ground_overlay.style.backgroundColor = ground_color;
   
   // Set size of the Sun
-  arrah_sky_css.style.width = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
-  arrah_sky_css.style.height = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
+  arrah_sky_css.style.width = moon_size_multiplier * 0.5 * Math.PI/180 * skyangle2px + 'px';
+  arrah_sky_css.style.height = moon_size_multiplier * 0.5 * Math.PI/180 * skyangle2px + 'px';
   /*
   // Calc longitude and latitude of Sun
   if (orbital_angle>Math.PI) {  
@@ -501,22 +503,22 @@ function render_at_time(time) {
     moon_sky_underlay_ids[i].style.backgroundColor = sky_color;
     
     // It's always going to be half width fpr the sky moon
-    moon_sky_ids[i].style.width = moon_list[i].apparent_size() * skyangle2px/2 + 'px';
+    moon_sky_ids[i].style.width = moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px/2 + 'px';
     // Overlay apparent width changes with angle
-    overlay_apparent_width = moon_list[i].apparent_size() * Math.abs(Math.cos(orbital_angle));
+    overlay_apparent_width = moon_size_multiplier *moon_list[i].apparent_size() * Math.abs(Math.cos(orbital_angle));
     
     moon_sky_overlay_ids[i].style.width = overlay_apparent_width * skyangle2px + 'px';
-    moon_sky_underlay_ids[i].style.width = moon_list[i].apparent_size() * skyangle2px + 'px';
+    moon_sky_underlay_ids[i].style.width = moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px + 'px';
 
     
     // Just the standard height no matter the phases
-    moon_sky_ids[i].style.height = moon_list[i].apparent_size() * skyangle2px + 'px';
-    moon_sky_overlay_ids[i].style.height = moon_list[i].apparent_size() * skyangle2px + 'px';
-    moon_sky_underlay_ids[i].style.height = moon_list[i].apparent_size() * skyangle2px + 'px';
+    moon_sky_ids[i].style.height = moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px + 'px';
+    moon_sky_overlay_ids[i].style.height = moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px + 'px';
+    moon_sky_underlay_ids[i].style.height = moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px + 'px';
     
     // Put the ascendency halo in the right place
     if (moon_list[i].name == get_month(time)) {
-      moon_sky_underlay_ids[i].style.boxShadow = '0 0 '+ moon_list[i].apparent_size() * skyangle2px+ 'px 0px #fff';
+      moon_sky_underlay_ids[i].style.boxShadow = '0 0 '+ moon_size_multiplier * moon_list[i].apparent_size() * skyangle2px+ 'px 0px #fff';
     } else {
       moon_sky_underlay_ids[i].style.boxShadow = '0 0 0px 0px #fff';
     }
@@ -555,15 +557,15 @@ function render_at_time(time) {
 
     moon_sky_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
+      - moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
     moon_sky_overlay_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
+      - moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
     moon_sky_underlay_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
+      - moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
 
     // Set the xloc dependent on angle
@@ -573,7 +575,7 @@ function render_at_time(time) {
       + 'px';
     moon_sky_underlay_ids[i].style.left = xmin_sky 
       + moonx * skyangle2px
-      - moon_list[i].apparent_size() * skyangle2px/2 
+      - moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
     
     
@@ -583,8 +585,8 @@ function render_at_time(time) {
         + moonx * skyangle2px
         + 'px';
       
-      moon_sky_ids[i].style.borderTopRightRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
-      moon_sky_ids[i].style.borderBottomRightRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
+      moon_sky_ids[i].style.borderTopRightRadius = moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px + 'px';
+      moon_sky_ids[i].style.borderBottomRightRadius = moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px + 'px';
       moon_sky_ids[i].style.borderTopLeftRadius = '0px';
       moon_sky_ids[i].style.borderBottomLeftRadius = '0px';
       if ((orbital_angle < Math.PI/2) || (orbital_angle > 3*Math.PI/2)) {
@@ -596,12 +598,12 @@ function render_at_time(time) {
       // Main on the left
       moon_sky_ids[i].style.left = xmin_sky 
         + moonx * skyangle2px
-        - moon_list[i].apparent_size()/2 * skyangle2px  
+        - moon_size_multiplier *moon_list[i].apparent_size()/2 * skyangle2px  
         + 'px';
       moon_sky_ids[i].style.borderTopRightRadius = '0px';
       moon_sky_ids[i].style.borderBottomRightRadius = '0px';
-      moon_sky_ids[i].style.borderTopLeftRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
-      moon_sky_ids[i].style.borderBottomLeftRadius = moon_list[i].apparent_size() * skyangle2px + 'px';
+      moon_sky_ids[i].style.borderTopLeftRadius = moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px + 'px';
+      moon_sky_ids[i].style.borderBottomLeftRadius = moon_size_multiplier *moon_list[i].apparent_size() * skyangle2px + 'px';
       if ((orbital_angle < Math.PI/2) || (orbital_angle > 3*Math.PI/2)) {
         moon_sky_overlay_ids[i].style.backgroundColor = sky_color
       } else {
