@@ -31,6 +31,7 @@
       <button id="reverse" name="Slower">Reverse</button>
       <button id="reset" name="Reset">Reset</button>
       <button id="settime" data-toggle="modal" data-target="#basicModal">Set Time</button>
+      <button id="settings" data-toggle="modal" data-target="#settingsModal">Settings</button>
     </div>
     
     <div class="container_toggles" id="toggles">
@@ -254,6 +255,36 @@
         </div>
       </div>
     </div>
+    
+    <!-- settings modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog" style="width:300px;">
+        <div class="modal-content">
+          <div class="modal-body" style="color:#000">
+            <form>
+              <table style='width:100%'>
+                <tr>
+                  <th><b>Settings</b></th>
+                </tr>
+                <tr>
+                  <td>Viewing Lattitude (deg):</td>
+                  <td style='text-align: right'><input type="number" value="30" min="-90" max="90" name="view_lat_set" id="view_lat_set"/></td>
+                </tr>
+                <tr>
+                  <td>Moon Size Multiplier:</td>
+                  <td style='text-align: right'><input type="number" value="4" min="0" max="100" name="size_multiplier_set" id="size_multiplier_set"/></td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal">Cancel</button>
+            <button type="button" id="settings_confirm" data-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     
     <script src="app.js" type="text/javascript"></script>
   </body>
