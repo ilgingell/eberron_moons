@@ -37,7 +37,9 @@ var faster_button = document.getElementById('faster');
 var slower_button = document.getElementById('slower');
 var reverse_button = document.getElementById('reverse');
 var settime_button = document.getElementById('settime');
-var settime_confirm_button = document.getElementById('settime_confirm');                            
+var settime_confirm_button = document.getElementById('settime_confirm');
+
+var settings_confirm_button = document.getElementById('settings_confirm');                            
 
 var namecheck_orbits = document.getElementById('namesorbits');
 var namecheck_phases = document.getElementById('namesphases');
@@ -785,3 +787,18 @@ function nameset_sky() {
 namecheck_orbits.addEventListener('click', nameset_orbits);
 namecheck_phases.addEventListener('click', nameset_phases);
 namecheck_sky.addEventListener('click', nameset_sky);
+
+/*
+===========================
+Functions and listeners for settings menu
+===========================
+*/
+
+var settings_confirm = function() {
+  view_lat = document.getElementById("view_lat_set").value
+  moon_size_multiplier = document.getElementById("size_multiplier_set").value
+  
+  render_at_time(time)
+}
+
+settings_confirm_button.addEventListener('click', settings_confirm);
