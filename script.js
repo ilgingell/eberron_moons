@@ -164,7 +164,47 @@ function value_to_hex(c) {
 function rgb_to_hex(rgb) {
   return ('#' + value_to_hex(rgb[0]) + value_to_hex(rgb[1]) + value_to_hex(rgb[2]))
 }
+
+/*
+===========================
+Coordinate Transforms
+===========================
+*/
+function cart_to_spherical(x,y,z) {
+    var r0 = (x**2+y**2+z**2)**0.5
+    var theta = Math.acos(z/r0)
+    var phi = 0
+    
+    if (x > 0) {
+      phi = Math.atan2(y,x)
+    } else if ((x < 0) && (y >=0)) {    
+      phi = Math.atan2(y,x)// + np.pi/2
+    } else if ((x < 0) && (y < 0)) {    
+      phi = Math.atan2(y,x)// - np.pi/2
+    } else if ((x == 0) && (y > 0)) {    
+      phi = Math.PI/2
+    } else if ((x == 0) && (y < 0)) {    
+      phi = -Math.PI/2
+    } else {
+      phi = 0
+    }
+    return [theta,phi] 
+}
+
+function xypos_lat_to_spherical(xpos,ypos,lat) {
   
+  var y = xpos
+  var z = ypos
+  var x = 0
+  
+  var lat_rad = lat * Math.PI/180
+  var x2 = x * Math.cos(lat_rad) + z * Math.sin(lat_rad)
+  var y2 = y
+  var z2 = -x * Math.sin(lat_rad) + z * Math.cos(lat_rad)
+  
+  angles_output = cart_to_spherical(x2,y2,z2);
+  return angles_output
+}
 /*
 ===========================
 Initialisations
@@ -245,7 +285,6 @@ function render_at_time(time) {
     time_zone = 24+time_zone;
   }
   tmt_view_angle = (360 * (time % (60*60*24))/(60*60*24)) % 360;
-  console.log(time_zone)
   view_angle = (360 * (time % (60*60*24))/(60*60*24) + 15 * time_zone) % 360;
   
   /*
@@ -359,6 +398,8 @@ function render_at_time(time) {
   ===========================
   */
   
+  var view_lat = 30
+  
   var xlen_sky = document.getElementById('skybox').offsetWidth;
   var xmin_sky = 0;
   var xmax_sky = xmin_sky+xlen_sky;
@@ -409,7 +450,7 @@ function render_at_time(time) {
   // Set size of the Sun
   arrah_sky_css.style.width = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
   arrah_sky_css.style.height = 10* 0.5 * Math.PI/180 * skyangle2px + 'px';
-  orbital_angle =  (view_angle * Math.PI/180) % (2*Math.PI);
+  /*
   // Calc longitude and latitude of Sun
   if (orbital_angle>Math.PI) {  
       moon_latitude = Math.PI/2-orbital_angle;
@@ -420,24 +461,40 @@ function render_at_time(time) {
   }
   moonx = moon_longitude;
   moony = moon_latitude;
+  */
+  
+  var sun_angle = (Math.PI/2 - view_angle * Math.PI/180) % (2*Math.PI)
+  var xpos_tmp = Math.cos(sun_angle)
+  var ypos_tmp = Math.sin(sun_angle)
+  var angle_output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat)
+  
+  var moonx = angle_output[1]
+  var moony = angle_output[0]
+  if (moonx < 0) {
+    moonx = moonx+2*Math.PI
+  }
+  
   // Set Position of Sun
   //arrah_sky_css.style.bottom = '50%'
   //arrah_sky_css.style.left = '50%'
-  arrah_sky_css.style.bottom = ymin_sky+1.5*ylen_sky
+  arrah_sky_css.style.bottom = ymin_sky
     + moony * skyangle2px
-    - 0.5 * Math.PI/180 * skyangle2px/2 
     + 'px';
   arrah_sky_css.style.left = xmin_sky 
     + moonx * skyangle2px
-    - 0.5 * Math.PI/180 * skyangle2px/2 
     + 'px';
   
   for (let i = 0; i < moon_sky_ids.length; i++) {
     // This one if fixed to midnight meridian
-    //orbital_angle = 2*Math.PI - (2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) % (2*Math.PI);
+    // Still used for the phases
+    orbital_angle = 2*Math.PI - (2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) % (2*Math.PI);
     
     // This one if fixed to a moving point on the surface
-    orbital_angle = 2*Math.PI - ((2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) - view_angle * Math.PI/180) % (2*Math.PI);
+    //orbital_angle2 = 2*Math.PI - ((2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase) - view_angle * Math.PI/180) % (2*Math.PI);
+   
+    // Fix for new long/lat system
+    orbital_angle2 = (Math.PI/2 + 2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase - view_angle * Math.PI/180) % (2*Math.PI)
+    
     
     // Set the color
     moon_sky_ids[i].style.backgroundColor = moon_list[i].color;
@@ -471,7 +528,6 @@ function render_at_time(time) {
     Projection: Regular skymap
     x = longitude
     y = latitude
-     */
     if (orbital_angle>Math.PI) {  
       moon_latitude = Math.PI/2-orbital_angle;
       moon_longitude = 3*Math.PI/2;
@@ -482,15 +538,30 @@ function render_at_time(time) {
     moonx = moon_longitude;
     moony = moon_latitude;
     
-    moon_sky_ids[i].style.bottom = ymin_sky+1.5*ylen_sky
+     */
+    //orbital_angle2 = ((2*Math.PI * (time/moon_list[i].orbit_period())+moon_list[i].phase))
+
+    
+    var xpos_tmp = moon_list[i].orbit_radius * Math.cos(orbital_angle2)
+    var ypos_tmp = moon_list[i].orbit_radius * Math.sin(orbital_angle2)
+    
+    var angle_output
+    angle_output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat)
+    moonx = angle_output[1]
+    moony = angle_output[0]
+    if (moonx < 0) {
+      moonx = moonx+2*Math.PI
+    }
+
+    moon_sky_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
       - moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
-    moon_sky_overlay_ids[i].style.bottom = ymin_sky+1.5*ylen_sky
+    moon_sky_overlay_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
       - moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
-    moon_sky_underlay_ids[i].style.bottom = ymin_sky+1.5*ylen_sky
+    moon_sky_underlay_ids[i].style.bottom = ymin_sky
       + moony * skyangle2px
       - moon_list[i].apparent_size() * skyangle2px/2 
       + 'px';
