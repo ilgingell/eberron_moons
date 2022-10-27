@@ -3,7 +3,7 @@ Visualisation project by Imogen Gingell
 
 ## How Does it Work?
 
-The orbital radii and moon radii are given in the *Dragonshards* article *The Moons of Eberron*, released on the Wizards of the Coast website during the 3rd-Edition era of D&D. Given the orbit and moon sizes described in this article, we can calculate the moon's orbital periods using [Kepler's laws](https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion). All the rest is geometry! 
+The orbital radii and moon radii are given in the *Dragonshards* article [*The Moons of Eberron*](https://web.archive.org/web/20150921130448/http://archive.wizards.com/default.asp?x=dnd/ebds/20050307a), released on the Wizards of the Coast website during the 3rd-Edition era of D&D. Given the orbit and moon sizes described in this article, we can calculate the moon's orbital periods using [Kepler's laws](https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion). All the rest is geometry! 
 
 ### Assumptions
 
