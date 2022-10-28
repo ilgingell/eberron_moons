@@ -7,6 +7,9 @@ var km2px = 1/2000
 var angle2px = 1000
 var dt0 = 50
 
+var ring_inner_radius = 1.7*R_E
+var ring_outer_radius = 2.0*R_E
+
 var moon_ecliptic_angle = 0.5*Math.PI;
 var moon_equinox_angle = 0*Math.PI;
 
@@ -213,6 +216,117 @@ function xypos_lat_to_spherical(xpos,ypos,lat) {
 }
 /*
 ===========================
+Ring Rendering
+===========================
+*/
+function linspace(start, stop, num, endpoint = true) {
+    const div = endpoint ? (num - 1) : num;
+    const step = (stop - start) / div;
+    return Array.from({length: num}, (_, i) => start + step * i);
+}
+
+function calc_ring_angles(plot_angles, view_lat, adjusted_lat) {
+  const ring_phi = new Array(plot_angles.length)
+  const ring_theta = new Array(plot_angles.length)
+
+  for (let i = 0; i < plot_angles.length; i++) {
+    xpos_tmp = Math.cos(plot_angles[i])
+    ypos_tmp = Math.sin(plot_angles[i])
+    // Inner ring
+    output = xypos_lat_to_spherical(xpos_tmp,ypos_tmp,view_lat+adjusted_lat);
+    ring_theta[i] = output[0]
+    if (output[1] < 0) {
+      ring_phi[i] = output[1] + 2*Math.PI
+    } else {
+      ring_phi[i] = output[1]
+    }
+  }
+  return [ring_theta, ring_phi]
+}
+
+function create_path_string(ring_phi_outer,ring_theta_outer,ring_phi_inner,ring_theta_inner) {
+  //px_height = document.getElementById('ring_svg').getAttribute('height')
+  //px_width = document.getElementById('ring_svg').getAttribute('width')
+  
+  px_hw = document.getElementById('ring_svg').getBoundingClientRect()
+  px_height = px_hw.height
+  px_width = px_hw.width
+  
+  let pxw_convert = px_width/360
+  let pxh_convert = px_height/180
+  
+  path_str = ''
+  // Loop over the outer part
+  for (let i = 0; i < ring_phi_outer.length; i++) {
+    if (i == 0) {
+      // Have to 'move' to the start without drawing a line
+      path_str += 'M' + pxw_convert*ring_phi_outer[i]*180/Math.PI + ' ' + (px_height-pxh_convert*ring_theta_outer[i]*180/Math.PI);
+    } else {
+      path_str += ' L' + pxw_convert*ring_phi_outer[i]*180/Math.PI + ' ' + (px_height-pxh_convert*ring_theta_outer[i]*180/Math.PI);
+    }
+  }
+  // Loop over the inner part
+  for (let i = ring_phi_inner.length-1; i >= 0; i--) {
+    path_str += ' L' + pxw_convert*ring_phi_inner[i]*180/Math.PI + ' ' + (px_height-pxh_convert*ring_theta_inner[i]*180/Math.PI);
+  }
+  // Close the shape
+  path_str += ' Z'
+  
+  return path_str 
+}
+
+
+function string_for_ring_section(start_angle,end_angle,view_lat,adjusted_lat_inner,adjusted_lat_outer) {
+  plot_angles = linspace(start_angle,end_angle,30)
+  
+  ring_angles_inner = calc_ring_angles(plot_angles,view_lat,adjusted_lat_inner)
+  let ring_theta_inner = ring_angles_inner[0]
+  let ring_phi_inner = ring_angles_inner[1]
+
+  ring_angles_outer = calc_ring_angles(plot_angles,view_lat,adjusted_lat_outer)
+  let ring_theta_outer = ring_angles_outer[0]
+  let ring_phi_outer = ring_angles_outer[1]
+
+  path_str = create_path_string(ring_phi_outer,ring_theta_outer,ring_phi_inner,ring_theta_inner)
+  
+  return path_str
+}
+
+function render_ring(view_lat,inner_radius,outer_radius) {
+
+  // Calculate the adjusted latitudes for the ring's inner and outer edge
+  adjusted_lat_inner = (180/Math.PI) * Math.atan2((R_E * Math.sin(view_lat * Math.PI/180)),(inner_radius-R_E* Math.cos(view_lat * Math.PI/180)))
+  adjusted_lat_outer = (180/Math.PI) * Math.atan2((R_E * Math.sin(view_lat * Math.PI/180)),(outer_radius-R_E* Math.cos(view_lat * Math.PI/180)))
+
+  // Create an array over the angles
+  // For EtoW:
+  // 0 to 1 pi if view_lat < 0
+  // 1 to 2 pi if view_lat >= 0
+
+  if (view_lat > 0) {
+    path_str_EtoW = string_for_ring_section(Math.PI,2*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_EtoW').setAttribute('d',path_str_EtoW)
+
+    path_str_StoE = string_for_ring_section(0*Math.PI,0.5*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_StoE').setAttribute('d',path_str_StoE)
+
+    path_str_WtoS = string_for_ring_section(0.50001*Math.PI,1*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_WtoS').setAttribute('d',path_str_WtoS)
+
+  } else {
+    path_str_EtoW = string_for_ring_section(0*Math.PI,1*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_EtoW').setAttribute('d',path_str_EtoW)
+
+    path_str_StoE = string_for_ring_section(1.50001*Math.PI,2*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_StoE').setAttribute('d',path_str_StoE)
+
+    path_str_WtoS = string_for_ring_section(1*Math.PI,1.5*Math.PI,view_lat,adjusted_lat_inner,adjusted_lat_outer)
+    document.getElementById('ring_WtoS').setAttribute('d',path_str_WtoS)
+  }
+
+}
+/*
+===========================
 Initialisations
 ===========================
 */
@@ -280,6 +394,11 @@ for (let i = 0; i < moon_list.length; i++) {
   //moon_css_ids[i].style.bottom = y0 - moon_radius + 'px';
   moon_css_ids[i].style.backgroundColor = moon_list[i].color
 }
+
+
+// Initialize the ring on the skybox
+//render_ring(view_lat,ring_inner_radius,ring_outer_radius)
+
 
 function render_at_time(time) {
   // Define the main rendering function
@@ -621,6 +740,10 @@ function render_at_time(time) {
     }
   } // End sky plot
   
+  
+  // Initialize the ring on the skybox
+  render_ring(view_lat,ring_inner_radius,ring_outer_radius)
+  
 } // End rendering function
 
 // Finish the initialisation by running render_at_time for t0, time zone TMT+0
@@ -804,7 +927,10 @@ Functions and listeners for settings menu
 var settings_confirm = function() {
   view_lat = parseFloat(document.getElementById("view_lat_set").value)
   moon_size_multiplier = parseFloat(document.getElementById("size_multiplier_set").value)
+  ring_inner_radius = parseFloat(document.getElementById("ring_inner_radius_set").value)*R_E
+  ring_outer_radius = parseFloat(document.getElementById("ring_outer_radius_set").value)*R_E
   
+  //render_ring(view_lat,ring_inner_radius,ring_outer_radius)
   render_at_time(time)
 }
 
