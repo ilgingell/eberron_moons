@@ -786,6 +786,7 @@ vl.compassline {
   left: 0;
   top: 50%;
   background-color: #442;
+  opacity: 50%;
 }
 
 #arrah_sky_css {
