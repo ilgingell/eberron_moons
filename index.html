@@ -183,7 +183,12 @@
       <div id="zarantyr_sky_css"></div>
       <div id="zarantyr_sky_overlay_css"></div>
       
-      
+      <svg height="100%" width="100%" id='ring_svg' style='position:relative'>
+        <path id='ring_StoE' fill='#cccc00aa' d=" " />
+        <path id='ring_EtoW' fill='#cccc00aa' d=" " />
+        <path id='ring_WtoS' fill='#cccc00aa' d=" " />
+      </svg>
+
       <div id='ground_overlay'></div>
       
       <hr class="horizonline"> 
@@ -274,6 +279,15 @@
                 <tr>
                   <td>Moon Size Multiplier:</td>
                   <td style='text-align: right'><input type="number" value="4" min="0" max="100" name="size_multiplier_set" id="size_multiplier_set"/></td>
+                </tr>
+                <tr>
+                  <td>Ring Inner Radius:</td>
+                  <td style='text-align: right'><input type="number" value="1.7" min="1" max="100" name="ring_inner_radius_set" id="ring_inner_radius_set"/></td>
+                </tr>
+                
+                <tr>
+                  <td>Ring Outer Radius:</td>
+                  <td style='text-align: right'><input type="number" value="2" min="1" max="100" name="ring_outer_radius_set" id="ring_outer_radius_set"/></td>
                 </tr>
               </table>
             </form>
